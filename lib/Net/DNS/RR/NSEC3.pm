@@ -496,9 +496,9 @@ DEALINGS IN THE SOFTWARE.
 =head1 SEE ALSO
 
 L<perl> L<Net::DNS> L<Net::DNS::RR>
-L<RFC5155|https://tools.ietf.org/html/rfc5155>
-L<RFC9077|https://tools.ietf.org/html/rfc9077>
+L<RFC5155(3)|https://iana.org/go/rfc5155#section-3>
+L<RFC9077|https://iana.org/go/rfc9077>
 
-L<Hash Algorithms|http://www.iana.org/assignments/dnssec-nsec3-parameters>
+L<Hash Algorithms|https://iana.org/assignments/dnssec-nsec3-parameters>
 
 =cut

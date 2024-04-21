@@ -3,7 +3,7 @@ package Net::DNS::Parameters;
 ################################################
 ##
 ##	Domain Name System (DNS) Parameters
-##	(last updated 2024-03-06)
+##	(last updated 2024-04-09)
 ##
 ################################################
 
@@ -193,7 +193,7 @@ our %rcodebyname = @rcodebyname;
 # Registry: DNS EDNS0 Option Codes (OPT)
 my @ednsoptionbyname = (
 	LLQ		 => 1,					# RFC8764
-	UL		 => 2,					# http://files.dns-sd.org/draft-sekar-dns-ul.txt
+	'UPDATE-LEASE'	 => 2,					# RFC-ietf-dnssd-update-lease-08
 	NSID		 => 3,					# RFC5001
 	DAU		 => 5,					# RFC6975
 	DHU		 => 6,					# RFC6975

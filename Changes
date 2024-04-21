@@ -8,6 +8,9 @@ $Id$                       -*-text-*-
 	Resync with IANA DS Digest Algorithms registry.
 	Add support for EDNS CO flag.
 
+Fix rt.cpan.org #152756
+	Net::DNS::Resolver::UNIX creates $ENV{PATH} key if one doesn't exist
+
 
 **** 1.44 Feb 15, 2024
 

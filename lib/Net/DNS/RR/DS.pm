@@ -146,9 +146,11 @@ sub create {
 		);
 
 	my $spec = $digest{$self->digtype};
-	croak join ' ', 'digtype', $self->digtype('MNEMONIC'), 'not supported' unless $spec;
-	my ( $object, @param ) = @$spec;
-	my $hash = $object->new(@param);
+	my $hash = eval {
+		my ( $object, @param ) = @$spec;
+		$object->new(@param);
+	};
+	croak join ' ', 'digtype', $self->digtype('MNEMONIC'), 'not supported' unless $hash;
 	$hash->add( $keyrr->{owner}->canonical );
 	$hash->add( $keyrr->_encode_rdata );
 	$self->digestbin( $hash->digest );
@@ -394,10 +396,10 @@ DEALINGS IN THE SOFTWARE.
 =head1 SEE ALSO
 
 L<perl> L<Net::DNS> L<Net::DNS::RR>
-L<RFC4034|https://tools.ietf.org/html/rfc4034>
+L<RFC4034(5)|https://iana.org/go/rfc4034#section-5>
 
-L<Digest Types|http://www.iana.org/assignments/ds-rr-types>
+L<Digest Types|https://iana.org/assignments/ds-rr-types>
 
-L<Algorithm Numbers|http://www.iana.org/assignments/dns-sec-alg-numbers>
+L<Algorithm Numbers|https://iana.org/assignments/dns-sec-alg-numbers>
 
 =cut

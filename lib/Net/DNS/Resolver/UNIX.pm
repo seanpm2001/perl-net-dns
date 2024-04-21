@@ -17,12 +17,13 @@ use base qw(Net::DNS::Resolver::Base);
 
 my @config_file = grep { -f $_ && -r _ } '/etc/resolv.conf';
 
+my $homedir = $ENV{HOME};
 my $dotfile = '.resolv.conf';
-my @dotpath = grep {defined} $ENV{HOME}, '.';
-my @dotfile = grep { -f $_ && -o _ } map {"$_/$dotfile"} @dotpath;
+my @dotfile = grep { -f $_ && -o _ } map {"$_/$dotfile"} grep {$_} $homedir, '.';
 
 
-local $ENV{PATH} = join ':', grep {$_} qw(/bin /usr/bin), $ENV{PATH};
+my $path = $ENV{PATH};
+local $ENV{PATH} = join ':', grep {$_} qw(/bin /usr/bin), $path;
 my $uname = eval {`uname -n 2>/dev/null`} || '';
 chomp $uname;
 my ( $host, @domain ) = split /\./, $uname, 2;

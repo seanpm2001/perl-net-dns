@@ -435,9 +435,8 @@ sub _CreateSig {
 		my ( $self, @argument ) = @_;
 
 		my $algorithm = $self->algorithm;
-		my $class     = $DNSSEC_siggen{$algorithm};
-
 		return eval {
+			my $class = $DNSSEC_siggen{$algorithm};
 			die "algorithm $algorithm not supported\n" unless $class;
 			$self->sigbin( $class->sign(@argument) );
 		} || return croak "${@}signature generation failed";
@@ -450,23 +449,22 @@ sub _VerifySig {
 		my ( $self, @argument ) = @_;
 
 		my $algorithm = $self->algorithm;
-		my $class     = $DNSSEC_verify{$algorithm};
-
-		my $retval = eval {
+		my $returnval = eval {
+			my $class = $DNSSEC_verify{$algorithm};
 			die "algorithm $algorithm not supported\n" unless $class;
 			$class->verify( @argument, $self->sigbin );
 		};
 
-		unless ($retval) {
+		unless ($returnval) {
 			$self->{vrfyerrstr} = "${@}signature verification failed";
 			print "\n", $self->{vrfyerrstr}, "\n" if DEBUG;
 			return 0;
 		}
 
-		# uncoverable branch true	# bug in Net::DNS::SEC or dependencies
-		croak "unknown error in $class->verify" unless $retval == 1;
+		# uncoverable branch true	# unexpected return value from EVP_DigestVerify
+		croak "internal error in algorithm $algorithm verification" unless $returnval == 1;
 		print "\nalgorithm $algorithm verification successful\n" if DEBUG;
-		return 1;
+		return $returnval;
 	}
 }
 
@@ -780,13 +778,14 @@ DEALINGS IN THE SOFTWARE.
 
 L<perl> L<Net::DNS> L<Net::DNS::RR>
 L<Net::DNS::SEC>
-L<RFC2536|https://tools.ietf.org/html/rfc2536>
-L<RFC2931|https://tools.ietf.org/html/rfc2931>
-L<RFC3110|https://tools.ietf.org/html/rfc3110>
-L<RFC4034|https://tools.ietf.org/html/rfc4034>
+L<RFC2535(4)|https://iana.org/go/rfc2535#section-4>
+L<RFC2936|https://iana.org/go/rfc2936>
+L<RFC2931|https://iana.org/go/rfc2931>
+L<RFC3110|https://iana.org/go/rfc3110>
+L<RFC4034|https://iana.org/go/rfc4034>
 
-L<Algorithm Numbers|http://www.iana.org/assignments/dns-sec-alg-numbers>
+L<Algorithm Numbers|https://iana.org/assignments/dns-sec-alg-numbers>
 
-L<BIND Administrator Reference Manual|http://bind.isc.org/>
+L<BIND Administrator Reference Manual|https://bind.isc.org/>
 
 =cut

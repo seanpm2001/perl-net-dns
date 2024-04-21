@@ -424,7 +424,6 @@ sub vrfyerrstr { return shift->error; }
 ########################################
 
 {
-	# source: http://www.iana.org/assignments/tsig-algorithm-names
 	my @algbyname = (
 		'HMAC-MD5.SIG-ALG.REG.INT' => 157,		# numbers are from ISC BIND keygen
 		'HMAC-SHA1'		   => 161,		# and not blessed by IANA
@@ -804,8 +803,8 @@ DEALINGS IN THE SOFTWARE.
 =head1 SEE ALSO
 
 L<perl> L<Net::DNS> L<Net::DNS::RR>
-L<RFC8945|https://tools.ietf.org/html/rfc8945>
+L<RFC8945|https://iana.org/go/rfc8945>
 
-L<TSIG Algorithm Names|http://www.iana.org/assignments/tsig-algorithm-names>
+L<TSIG Algorithm Names|https://iana.org/assignments/tsig-algorithm-names>
 
 =cut

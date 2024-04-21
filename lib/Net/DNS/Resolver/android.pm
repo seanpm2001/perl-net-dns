@@ -19,9 +19,9 @@ my $config_file = 'resolv.conf';
 my @config_path = ( $ENV{ANDROID_ROOT} || '/system' );
 my @config_file = grep { -f $_ && -r _ } map {"$_/etc/$config_file"} @config_path;
 
+my $homedir = $ENV{HOME};
 my $dotfile = '.resolv.conf';
-my @dotpath = grep {defined} $ENV{HOME}, '.';
-my @dotfile = grep { -f $_ && -o _ } map {"$_/$dotfile"} @dotpath;
+my @dotfile = grep { -f $_ && -o _ } map {"$_/$dotfile"} grep {$_} $homedir, '.';
 
 
 sub _init {
