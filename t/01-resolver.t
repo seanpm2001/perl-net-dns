@@ -50,8 +50,10 @@ ok( !$resolver->search(''),		'$resolver->search() root label' );
 
 
 my $query = Net::DNS::Packet->new('.');	## exercise _accept_reply()
+$query->encode;
 my $reply = Net::DNS::Packet->new('.');
 $reply->header->qr(1);
+$reply->encode;
 
 ok( !$resolver->_accept_reply(undef), '_accept_reply()	no reply' );
 

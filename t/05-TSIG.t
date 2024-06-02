@@ -79,9 +79,9 @@ for my $rr ( Net::DNS::RR->new( name => $name, type => $type, %$hash ) ) {
 
 
 for my $rr ( Net::DNS::RR->new( type => 'TSIG', key => '' ) ) {
-	ok( !$rr->verify(),	'verify fails on empty TSIG' );
+	ok( !$rr->verify(),	'verify() fails on empty TSIG' );
 	ok( $rr->vrfyerrstr(),	'vrfyerrstr() reports failure' );
-	ok( !$rr->other(),	'other undefined' );
+	ok( !$rr->other(),	'other() undefined' );
 	ok( $rr->time_signed(), 'time_signed() defined' );
 	exception( "TSIG key write-only", sub { $rr->key() } );
 }

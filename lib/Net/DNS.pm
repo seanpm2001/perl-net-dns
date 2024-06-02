@@ -656,7 +656,7 @@ Net::DNS was created in 1997 by Michael Fuhr.
 
 L<perl> L<Net::DNS::Resolver> L<Net::DNS::Question> L<Net::DNS::RR>
 L<Net::DNS::Packet> L<Net::DNS::Update>
-L<RFC1035|https://tools.ietf.org/html/rfc1035>
+L<RFC1035|https://iana.org/go/rfc1035>
 
 =cut
 

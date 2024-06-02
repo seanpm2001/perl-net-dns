@@ -413,7 +413,7 @@ sub search {
 sub send {
 	my ( $self, @argument ) = @_;
 	my $packet	= $self->_make_query_packet(@argument);
-	my $packet_data = $packet->data;
+	my $packet_data = $packet->encode;
 
 	$self->_reset_errorstring;
 
@@ -555,7 +555,7 @@ NAMESERVER: foreach my $ns (@ns) {
 sub bgsend {
 	my ( $self, @argument ) = @_;
 	my $packet	= $self->_make_query_packet(@argument);
-	my $packet_data = $packet->data;
+	my $packet_data = $packet->encode;
 
 	$self->_reset_errorstring;
 
@@ -640,7 +640,7 @@ sub bgbusy {				## no critic		# overwrites user UDP handle
 	return unless $ans->header->tc;
 
 	$self->_diag('packet truncated: retrying using TCP');
-	my $tcp = $self->_bgsend_tcp( $query, $query->data ) || return;
+	my $tcp = $self->_bgsend_tcp( $query, $query->encode ) || return;
 	return defined( $_[1] = $tcp );				# caller's UDP handle now TCP
 }
 
@@ -761,7 +761,7 @@ sub axfr_next {				## historical
 
 sub _axfr_start {
 	my ( $self, $request ) = @_;
-	my $content = $request->data;
+	my $content = $request->encode;
 	my $TCP_msg = pack 'n a*', length($content), $content;
 
 	my ( $select, $reply, $rcode );

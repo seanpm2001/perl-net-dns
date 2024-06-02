@@ -1,6 +1,12 @@
 $Id$                       -*-text-*-
 
 
+**** 1.46 [unreleased]
+
+	Revise documentation for Packet.pm and Header.pm.
+	Random ID cache moved from header->id to packet->encode.
+
+
 **** 1.45 May 2, 2024
 
 	Resync with IANA DNS Parameters registry.

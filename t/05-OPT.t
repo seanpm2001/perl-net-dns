@@ -10,7 +10,7 @@ use TestToolkit;
 use Net::DNS;
 use Net::DNS::Parameters;
 
-use constant UTIL => scalar eval { require Scalar::Util; Scalar::Util->can('isdual') };	   ## no critic
+use constant UTIL => scalar eval { require Scalar::Util; Scalar::Util->can('isdual') };	## no critic
 
 
 my $code = 41;
@@ -101,9 +101,9 @@ my @testcase = (
 	["PADDING"	  => 100],
 	["CHAIN"	  => {"BASE16" => "076578616d706c6500"}],
 	["KEY-TAG"	  => ( 29281, 30562, 31092, 25971 )],
-	["EXTENDED-ERROR" => ( "INFO-CODE" => 0, "EXTRA-TEXT" => '{"JSON":"EXAMPLE"}' )],
-	["EXTENDED-ERROR" => ( "INFO-CODE" => 0, "EXTRA-TEXT" => '{JSON: unparsable}' )],
-	["EXTENDED-ERROR" => ( "INFO-CODE" => 123 )],
+	["EXTENDED-ERROR" => ( "INFO-CODE"    => 0, "EXTRA-TEXT" => '{"JSON":"EXAMPLE"}' )],
+	["EXTENDED-ERROR" => ( "INFO-CODE"    => 0, "EXTRA-TEXT" => '{JSON: unparsable}' )],
+	["EXTENDED-ERROR" => ( "INFO-CODE"    => 123 )],
 	["REPORT-CHANNEL" => ( "AGENT-DOMAIN" => "example." )],
 	);
 

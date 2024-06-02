@@ -55,7 +55,7 @@ for my $tsig ( $class->create($tsigkey) ) {
 
 for my $packet ( Net::DNS::Packet->new('query.example') ) {
 	$packet->sign_tsig($tsigkey);
-	$packet->data;
+	$packet->encode;
 
 	my $tsig = $class->create($packet);
 	is( ref($tsig),	      $class,			 'create TSIG from packet->sigrr' );

@@ -75,7 +75,7 @@ END
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	$packet->data;
+	$packet->encode;
 	ok( $packet->sigrr->sigbin, 'sign packet using private key' );
 
 	my $verified = $packet->verify($key);
@@ -86,7 +86,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	my $buffer = $packet->data;
+	my $buffer = $packet->encode;
 
 	my $decoded  = Net::DNS::Packet->new( \$buffer );
 	my $verified = $decoded->verify($key);
@@ -97,7 +97,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	$packet->data;
+	$packet->encode;
 
 	my $verified = $packet->verify($bad1);
 	ok( !$verified,		'verify fails using wrong key' );
@@ -107,7 +107,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	$packet->data;
+	$packet->encode;
 
 	my $verified = $packet->verify($bad2);
 	ok( !$verified,		'verify fails using wrong key' );
@@ -117,7 +117,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	$packet->data;
+	$packet->encode;
 
 	$packet->push( answer => rr_add('bogus. A 10.1.2.3') );
 	my $verified = $packet->verify($key);
@@ -128,7 +128,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	$packet->data;
+	$packet->encode;
 
 	my $verified = $packet->verify( [$bad1, $bad2, $key] );
 	ok( $verified, 'verify packet using array of keys' );
@@ -138,7 +138,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	$packet->data;
+	$packet->encode;
 
 	$packet->push( answer => rr_add('bogus. A 10.1.2.3') );
 	my $verified = $packet->verify( [$bad1, $bad2, $key] );
@@ -148,7 +148,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
-	my $data = $packet->data;
+	my $data = $packet->encode;
 	my $sig	 = create Net::DNS::RR::SIG( $data, $keyfile );
 	ok( $sig->sigbin, 'create SIG over data using private key' );
 
@@ -159,7 +159,7 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
-	my $data = $packet->data;
+	my $data = $packet->encode;
 	my $time = time() + 3;
 	my %args = (
 		siginception  => $time,
@@ -177,9 +177,9 @@ for my $packet ( Net::DNS::Packet->new('example') ) {
 
 for my $packet ( Net::DNS::Packet->new('example') ) {
 	$packet->sign_sig0($keyfile);
-	my $signed = $packet->data;				# signing occurs in SIG->encode
+	my $signed = $packet->encode;				# signing occurs in SIG->encode
 	$packet->sigrr->sigbin('');				# signature destroyed
-	exception( "unable to regenerate SIG0", sub { $packet->data } );
+	exception( "unable to regenerate SIG0", sub { $packet->encode } );
 }
 
 

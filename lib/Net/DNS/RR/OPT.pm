@@ -454,7 +454,7 @@ sub _decompose {
 }
 
 
-package Net::DNS::RR::OPT::REPORT_CHANNEL;			# draft-ietf-dnsop-dns-error-reporting
+package Net::DNS::RR::OPT::REPORT_CHANNEL;			# RFC9567
 
 sub _compose {
 	my ( undef, @argument ) = map { ref($_) ? %$_ : $_ } @_;
@@ -629,7 +629,7 @@ DEALINGS IN THE SOFTWARE.
 =head1 SEE ALSO
 
 L<perl> L<Net::DNS> L<Net::DNS::RR>
-L<RFC6891|https://tools.ietf.org/html/rfc6891>
-L<RFC3225|https://tools.ietf.org/html/rfc3225>
+L<RFC6891|https://iana.org/go/rfc6891>
+L<RFC3225|https://iana.org/go/rfc3225>
 
 =cut

@@ -3,7 +3,7 @@ package Net::DNS::Parameters;
 ################################################
 ##
 ##	Domain Name System (DNS) Parameters
-##	(last updated 2024-04-09)
+##	(last updated 2024-04-26)
 ##
 ################################################
 
@@ -208,7 +208,7 @@ my @ednsoptionbyname = (
 	'EXTENDED-ERROR' => 15,					# RFC8914
 	'CLIENT-TAG'	 => 16,					# draft-bellis-dnsop-edns-tags
 	'SERVER-TAG'	 => 17,					# draft-bellis-dnsop-edns-tags
-	'REPORT-CHANNEL' => 18,					# RFC-ietf-dnsop-dns-error-reporting-08
+	'REPORT-CHANNEL' => 18,					# RFC9567
 	'UMBRELLA-IDENT' => 20292,				# https://developer.cisco.com/docs/cloud-security/#!integrating-network-devic
 	DEVICEID	 => 26946,				# https://developer.cisco.com/docs/cloud-security/#!network-devices-getting-s
 	);
