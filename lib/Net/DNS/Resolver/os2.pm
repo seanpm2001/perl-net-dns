@@ -12,9 +12,6 @@ Net::DNS::Resolver::os2 - OS2 resolver class
 =cut
 
 
-use base qw(Net::DNS::Resolver::Base);
-
-
 my $config_file = 'resolv';
 my @config_path = ( $ENV{ETC} || '/etc' );
 my @config_file = grep { -f $_ && -r _ } map {"$_/$config_file"} @config_path;

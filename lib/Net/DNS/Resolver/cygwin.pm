@@ -12,7 +12,6 @@ Net::DNS::Resolver::cygwin - Cygwin resolver class
 =cut
 
 
-use base qw(Net::DNS::Resolver::Base);
 use IO::File;
 
 

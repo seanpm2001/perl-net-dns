@@ -5,6 +5,7 @@ $Id$                       -*-text-*-
 
 	Revise documentation for Packet.pm and Header.pm.
 	Random ID cache moved from header->id to packet->encode.
+	Restructure resolver method inheritance tree.
 
 
 **** 1.45 May 2, 2024

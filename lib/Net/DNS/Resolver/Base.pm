@@ -25,6 +25,11 @@ our $VERSION = (qw$Id$)[2];
 # [Revised March 2016, June 2018]
 
 
+use constant OS_TYPE => defined eval "require Net::DNS::Resolver::$^O";	## no critic
+use constant OS_CONF => join '::', 'Net::DNS::Resolver', OS_TYPE ? $^O : 'UNIX';
+use base OS_CONF;
+
+
 use constant USE_SOCKET_IP => defined eval 'use IO::Socket::IP 0.38; 1;';	## no critic
 require IO::Socket::INET unless USE_SOCKET_IP;
 

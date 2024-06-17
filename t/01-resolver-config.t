@@ -23,9 +23,8 @@ eval {
 my $resolver = Net::DNS::Resolver->new();
 my $class    = ref($resolver);
 
-for (@Net::DNS::Resolver::ISA) {
-	diag $_ unless /::UNIX$/;
-}
+my $isa = $resolver->OS_CONF;
+diag $isa unless $isa =~ /::UNIX$/;
 
 ok( $resolver->isa('Net::DNS::Resolver'), 'new() created object' );
 

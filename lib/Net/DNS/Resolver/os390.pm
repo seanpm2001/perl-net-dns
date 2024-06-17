@@ -12,7 +12,6 @@ Net::DNS::Resolver::os390 - IBM OS/390 resolver class
 =cut
 
 
-use base qw(Net::DNS::Resolver::Base);
 use IO::File;
 
 my $path = $ENV{PATH};

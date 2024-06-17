@@ -12,9 +12,6 @@ Net::DNS::Resolver::android - Android resolver class
 =cut
 
 
-use base qw(Net::DNS::Resolver::Base);
-
-
 my $config_file = 'resolv.conf';
 my @config_path = ( $ENV{ANDROID_ROOT} || '/system' );
 my @config_file = grep { -f $_ && -r _ } map {"$_/etc/$config_file"} @config_path;

@@ -23,12 +23,12 @@ Net::DNS::Resolver::Recurse - DNS recursive resolver
 
 =head1 DESCRIPTION
 
-This module is a subclass of Net::DNS::Resolver.
+This module resolves queries by following the delegation path from the DNS root.
 
 =cut
 
 
-use base qw(Net::DNS::Resolver);
+use base qw(Net::DNS::Resolver::Base);
 
 
 =head1 METHODS

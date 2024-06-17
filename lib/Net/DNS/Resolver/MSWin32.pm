@@ -12,7 +12,6 @@ Net::DNS::Resolver::MSWin32 - MS Windows resolver class
 =cut
 
 
-use base qw(Net::DNS::Resolver::Base);
 use Carp;
 
 use constant WINHLP => defined eval 'require Win32::IPHelper';	## no critic

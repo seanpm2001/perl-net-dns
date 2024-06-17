@@ -12,9 +12,6 @@ Net::DNS::Resolver::UNIX - Unix resolver class
 =cut
 
 
-use base qw(Net::DNS::Resolver::Base);
-
-
 my @config_file = grep { -f $_ && -r _ } '/etc/resolv.conf';
 
 my $homedir = $ENV{HOME};
@@ -27,12 +24,12 @@ local $ENV{PATH} = join ':', grep {$_} qw(/bin /usr/bin), $path;
 my $uname = eval {`uname -n 2>/dev/null`} || '';
 chomp $uname;
 my ( $host, @domain ) = split /\./, $uname, 2;
-__PACKAGE__->domain(@domain);
 
 
 sub _init {
 	my $defaults = shift->_defaults;
 
+	$defaults->domain(@domain);
 	$defaults->_read_config_file($_) foreach @config_file;
 
 	%$defaults = Net::DNS::Resolver::Base::_untaint(%$defaults);
